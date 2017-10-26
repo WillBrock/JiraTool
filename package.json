@@ -1,0 +1,35 @@
+{
+  "name": "jira-cli",
+  "version": "1.0.0",
+  "description": "CLI for jira actions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "tabtab install"
+  },
+  "keywords": [
+    "jira"
+  ],
+  "author": "Will Brock",
+  "license": "ISC",
+  "devDependencies": {
+    "btoa": "^1.1.2",
+    "chalk": "^2.3.0",
+    "cli-table": "^0.3.1",
+    "cli-table2": "^0.2.0",
+    "columnify": "^1.5.4",
+    "commander-completion": "^1.0.0",
+    "data-store": "^1.0.0",
+    "js-beautify": "^1.7.4",
+    "moment": "^2.19.1",
+    "node-fetch": "^1.7.3",
+    "prompt": "^1.0.0",
+    "tabtab": "^2.2.2"
+  },
+  "dependencies": {
+    "commander": "^2.11.0"
+  },
+  "bin": {
+    "jira": "./index.js"
+  }
+}
