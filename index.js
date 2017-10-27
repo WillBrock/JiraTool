@@ -10,12 +10,12 @@ const tab     = require(`tabtab`)({
 
 
 // @todo autoload these
-const Helper  = require(`./commands/Helper`);
-const Show    = require(`./commands/Show`);
-const Config  = require(`./commands/Config`);
-const Create  = require(`./commands/Create`);
-const Jql     = require(`./commands/Jql`);
-const Update  = require(`./commands/Update`);
+const Helper = require(`./commands/Helper`);
+const Show   = require(`./commands/Show`);
+const Config = require(`./commands/Config`);
+const Create = require(`./commands/Create`);
+const Jql    = require(`./commands/Jql`);
+const Update = require(`./commands/Update`);
 
 // Initialize jira
 program
@@ -68,13 +68,37 @@ program
 		Jql.run(query);
 	});
 
-// Update field data
 program
-	.command(`update <issue_key> <field> <value>`)
+	.command(`search <string>`)
+	.action((search) => {
+
+	});
+
+// Add field data
+program
+	.command(`add <issue_key> <field> <value>`)
 	.action((issue_key, field, value) => {
 		issue_key = Helper.getIssueKey(issue_key);
 
-		Update.run(issue_key, field, value);
+		Update.run(issue_key, field, value, `add`);
+	});
+
+// Set field data
+program
+	.command(`set <issue_key> <field> <value>`)
+	.action((issue_key, field, value) => {
+		issue_key = Helper.getIssueKey(issue_key);
+
+		Update.run(issue_key, field, value, `set`);
+	});
+
+// Remove field data
+program
+	.command(`remove <issue_key> <field> <value>`)
+	.action((issue_key, field, value) => {
+		issue_key = Helper.getIssueKey(issue_key);
+
+		Update.run(issue_key, field, value, `remove`);
 	});
 
 // Delete field data

@@ -1,13 +1,13 @@
 # Jira command line tool
 
-Allows viewing, editing, adding and deleting jira content as if it was done on the Jira website.
+Allows viewing, editing, updating and deleting jira content as if it was done on the Jira website.
 
 ## Features
 
 * View issue data
 * Update/Add/Delete issue data
-* Create new issues
 * View issues from JQL query
+* Create new issues
 * View issues by user
 * Update/Add versions
 
@@ -22,14 +22,45 @@ npm install -g jira-tool
 `init`
 `config`
 `show`
+`jql`
+`search`
+`create`
+`update`
+`remove`
+`refresh`
 
-# Usage
+# Quick Start
 
 Display data from an issue
 
 ```
 jira show 12345
 ```
+
+Display issues from a JQL query
+
+```
+jira jql "fixVersion = 8.6.0 AND component IN (Foo)"
+```
+
+Add a component
+
+```
+jira update 12345 component Foo
+```
+
+Update a custom field
+
+```
+jira update 12345 "Some Random Field" "FooBar"
+```
+
+# Init
+
+# Config
+
+# Show
+
 
 # Config
 
