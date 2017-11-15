@@ -19,16 +19,12 @@ npm install -g jira-tool
 
 # Available Commands
 
-`init`
-`config`
-`show`
+`s`
 `jql`
-`search`
-`create`
 `add`
 `set`
 `remove`
-`refresh`
+`init`
 
 # Quick Start
 

@@ -6,12 +6,12 @@ const prompt  = require(`prompt`);
 const store   = require(`data-store`)(`jira`);
 
 // @todo autoload these
-const Helper = require(`./commands/Helper`);
-const Show   = require(`./commands/Show`);
-const Config = require(`./commands/Config`);
-const Create = require(`./commands/Create`);
-const Jql    = require(`./commands/Jql`);
-const Update = require(`./commands/Update`);
+const Helper = require(`./classes/Helper`);
+const Show   = require(`./classes/Show`);
+const Config = require(`./classes/Config`);
+const Create = require(`./classes/Create`);
+const Jql    = require(`./classes/Jql`);
+const Update = require(`./classes/Update`);
 
 // Initialize jira
 program
