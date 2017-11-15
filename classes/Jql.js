@@ -4,6 +4,11 @@ const Jira = require(`../lib/Jira`);
 const Show = require(`./Show`);
 
 class Jql {
+	/**
+	 * Fetch and display results from a jql query
+	 * @param  {String} query Query to fetch
+	 * @return {Void}
+	 */
 	static async run(query) {
 		query = encodeURIComponent(query);
 

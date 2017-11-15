@@ -4,6 +4,10 @@ const prompt = require(`prompt`);
 const store  = require(`data-store`)(`jira`);
 
 class Config {
+	/**
+	 * Start the config prompt and store the entered values
+	 * @return {Void}
+	 */
 	static run() {
 		prompt.start();
 
@@ -12,6 +16,10 @@ class Config {
 		});
 	}
 
+	/**
+	 * Display fields for initial configration
+	 * @return {Object} Fields to prompt the user to enter
+	 */
 	static get schema() {
 		return {
 			properties : {
@@ -30,7 +38,7 @@ class Config {
 				},
 
 				'issue-key-prefix' : {
-					description : `Issue prefix, if any. e.g. FOCUS-`
+					description : `Issue prefix, if any. e.g. FOO-`
 				}
 			}
 		}

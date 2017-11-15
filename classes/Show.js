@@ -8,6 +8,12 @@ const moment    = require(`moment`);
 const log       = console.log;
 
 class Show {
+	/**
+	 * Show a jira issue
+	 * @param  {String}  issue_key        Issue to show
+	 * @param  {Boolean} exclude_comments [description]
+	 * @return {Void}
+	 */
 	static async run(issue_key, exclude_comments = false) {
 		const [ issue, all_fields ] = await Promise.all([
 			Jira.fetchData(`/issue/${issue_key}`),
@@ -17,6 +23,13 @@ class Show {
 		this.display(issue, all_fields, exclude_comments);
 	}
 
+	/**
+	 * Display a single issue
+	 * @param  {Object}  issue            All issue data that is returned from jira
+	 * @param  {Array}   all_fields       All fields for the current site
+	 * @param  {Boolean} exclude_comments Show or display comments on the issue
+	 * @return {Void}
+	 */
 	static display(issue, all_fields, exclude_comments = false) {
 		let comments         = [];
 		const line_length    = 175;
@@ -132,6 +145,11 @@ class Show {
 		}));
 	}
 
+	/**
+	 * Draw a line for the terminal ouput
+	 * @param  {Integer} length Length of the line
+	 * @return {Void}
+	 */
 	static drawLine(length = line_length) {
 		log(`-`.repeat(length));
 	}
