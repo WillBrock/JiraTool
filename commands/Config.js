@@ -5,10 +5,6 @@ const store  = require(`data-store`)(`jira`);
 
 class Config {
 	static run() {
-
-	}
-
-	static init() {
 		prompt.start();
 
 		prompt.get(this.schema, (error, result) => {

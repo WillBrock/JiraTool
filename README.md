@@ -25,7 +25,8 @@ npm install -g jira-tool
 `jql`
 `search`
 `create`
-`update`
+`add`
+`set`
 `remove`
 `refresh`
 
@@ -46,13 +47,13 @@ jira jql "fixVersion = 8.6.0 AND component IN (Foo)"
 Add a component
 
 ```
-jira update 12345 component Foo
+jira add 12345 component Foo
 ```
 
 Update a custom field
 
 ```
-jira update 12345 "Some Random Field" "FooBar"
+jira set 12345 "Some Random Field" "FooBar"
 ```
 
 # Init

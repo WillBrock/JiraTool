@@ -5,7 +5,8 @@ const Show = require(`./Show`);
 
 class Jql {
 	static async run(query) {
-		query        = encodeURIComponent(query);
+		query = encodeURIComponent(query);
+
 		const [ issues, all_fields ] = await Promise.all([
 			Jira.fetchData(`/search?jql=${query}`),
 			Jira.fetchData(`/field`)

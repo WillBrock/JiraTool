@@ -4,10 +4,6 @@
 const program = require(`commander`);
 const prompt  = require(`prompt`);
 const store   = require(`data-store`)(`jira`);
-const tab     = require(`tabtab`)({
-	name : `s`
-});
-
 
 // @todo autoload these
 const Helper = require(`./commands/Helper`);
@@ -22,56 +18,34 @@ program
 	.command(`init`)
 	.description(`Initial configuration`)
 	.action(() => {
-		Config.init();
-	});
-
-// Refresh all the jira data
-program
-	.command(`refresh`)
-	.description(`Refresh jira fields`)
-	.action(() => {
-
-	});
-
-// Setup config settings
-program
-	.command(`config`)
-	.description(`Configuration Settings`)
-	.action(() => {
 		Config.run();
 	});
 
 // Display an issue
 program
 	.command(`s <issue_key>`)
-	.option(`-c, --comments <comments>`, `af`, String)
-	.option(`-h, --history <history>`, `asdf`, String)
-	.option(`-a, --all <all>`, `Show all data`, String)
 	.description(`Show data for an issue`)
 	.action((issue_key, comments, history, all) => {
 		issue_key = Helper.getIssueKey(issue_key);
 
-		Show.run(issue_key, false);
-	});
-
-// Create a new issue
-program
-	.command(`create`)
-	.action(() => {
-		Create.run();
+		try {
+			Show.run(issue_key, false);
+		}
+		catch(error) {
+			console.log(error.message);
+		}
 	});
 
 // Query issues
 program
 	.command(`jql <jql>`)
 	.action((query) => {
-		Jql.run(query);
-	});
-
-program
-	.command(`search <string>`)
-	.action((search) => {
-
+		try {
+			Jql.run(query);
+		}
+		catch(error) {
+			console.log(error.message);
+		}
 	});
 
 // Add field data
@@ -80,7 +54,12 @@ program
 	.action((issue_key, field, value) => {
 		issue_key = Helper.getIssueKey(issue_key);
 
-		Update.run(issue_key, field, value, `add`);
+		try {
+			Update.run(issue_key, field, value, `add`);
+		}
+		catch(error) {
+			console.log(error.message);
+		}
 	});
 
 // Set field data
@@ -89,7 +68,12 @@ program
 	.action((issue_key, field, value) => {
 		issue_key = Helper.getIssueKey(issue_key);
 
-		Update.run(issue_key, field, value, `set`);
+		try {
+			Update.run(issue_key, field, value, `set`);
+		}
+		catch(error) {
+			console.log(error.message);
+		}
 	});
 
 // Remove field data
@@ -98,14 +82,12 @@ program
 	.action((issue_key, field, value) => {
 		issue_key = Helper.getIssueKey(issue_key);
 
-		Update.run(issue_key, field, value, `remove`);
-	});
-
-// Delete field data
-program
-	.command(`remove <issue_key> <field> <value>`)
-	.action(() => {
-
+		try {
+			Update.run(issue_key, field, value, `remove`);
+		}
+		catch(error) {
+			console.log(error.message);
+		}
 	});
 
 // Transition issue
@@ -115,23 +97,4 @@ program
 		// prompt();
 	});
 
-// Show latest activity
-program
-	.command(`activity`)
-	.action(() => {
-
-	});
-
-program
-	.command(`foo`)
-	.action(() => {
-
-	});
-
 program.parse(process.argv);
-
-tab.on(`s`, (data, done) => {
-	done(null, [`foo`, `bar`]);
-});
-
-tab.start();
