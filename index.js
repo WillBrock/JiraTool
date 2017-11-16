@@ -4,14 +4,11 @@
 const program = require(`commander`);
 const prompt  = require(`prompt`);
 const store   = require(`data-store`)(`jira`);
-
-// @todo autoload these
-const Helper = require(`./classes/Helper`);
-const Show   = require(`./classes/Show`);
-const Config = require(`./classes/Config`);
-const Create = require(`./classes/Create`);
-const Jql    = require(`./classes/Jql`);
-const Update = require(`./classes/Update`);
+const Config  = require(`./classes/Config`);
+const Helper  = require(`./classes/Helper`);
+const Show    = require(`./classes/Show`);
+const Jql     = require(`./classes/Jql`);
+const Update  = require(`./classes/Update`);
 
 // Initialize jira
 program
@@ -39,6 +36,7 @@ program
 // Query issues
 program
 	.command(`jql <jql>`)
+	.description(`Run jql query`)
 	.action((query) => {
 		try {
 			Jql.run(query);
@@ -51,6 +49,7 @@ program
 // Add field data
 program
 	.command(`add <issue_key> <field> <value>`)
+	.description(`Add data to a field`)
 	.action((issue_key, field, value) => {
 		issue_key = Helper.getIssueKey(issue_key);
 
@@ -65,6 +64,7 @@ program
 // Set field data
 program
 	.command(`set <issue_key> <field> <value>`)
+	.description(`Set field data`)
 	.action((issue_key, field, value) => {
 		issue_key = Helper.getIssueKey(issue_key);
 
@@ -79,6 +79,7 @@ program
 // Remove field data
 program
 	.command(`remove <issue_key> <field> <value>`)
+	.description(`Remove data from a field`)
 	.action((issue_key, field, value) => {
 		issue_key = Helper.getIssueKey(issue_key);
 
@@ -93,6 +94,7 @@ program
 // Transition issue
 program
 	.command(`transition <issue_key>`)
+	.description(`Transition an issue`)
 	.action((issue_key) => {
 		// prompt();
 	});

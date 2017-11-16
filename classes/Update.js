@@ -27,6 +27,7 @@ class Update {
 			indexed_fields[clean_field] = field;
 		}
 
+		// Format the data
 		const put_data    = this.getPutData(input_field, value);
 		verb_data[action] = put_data;
 
@@ -34,6 +35,7 @@ class Update {
 
 		console.log(issue_key, JSON.stringify(data), value);
 
+		// Push the update to jira
 		await Jira.fetchData(`/issue/${issue_key}`, {
 			method : `PUT`,
 			body   : data

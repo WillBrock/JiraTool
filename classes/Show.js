@@ -20,6 +20,7 @@ class Show {
 			Jira.fetchData(`/field`)
 		]);
 
+		// Display the issue
 		this.display(issue, all_fields, exclude_comments);
 	}
 
@@ -36,6 +37,8 @@ class Show {
 		const indexed_fields = {};
 		const issue_fields   = issue.fields;
 		const custom_fields  = [];
+
+		// Set comment table headers
 		const comment_table  = new Table({
 			head      : [`Author`, `Created`, `Comment`],
 			colWidths : [20, 30, 121],
@@ -46,6 +49,7 @@ class Show {
 			comments = issue_fields.comment.comments;
 		}
 
+		// Index fields by their id
 		for(let field of all_fields) {
 			indexed_fields[field.id] = field.name;
 		}
@@ -53,7 +57,9 @@ class Show {
 		// Get comments
 		for(let comment of comments) {
 			comment_table.push([
-				comment.author.name, moment(comment.created).format(`MM/DD/YYYY hh:mma`), comment.body.replace(/(\t|\r)/g, ``)
+				comment.author.name,
+				moment(comment.created).format(`MM/DD/YYYY hh:mma`),
+				comment.body.replace(/(\t|\r)/g, ``)
 			]);
 		}
 
@@ -62,6 +68,7 @@ class Show {
 			const field = issue_fields[key];
 			let display = null;
 
+			// Only get custom fields
 			if(!key.match(/customfield_/)) {
 				continue;
 			}
@@ -90,10 +97,12 @@ class Show {
 			});
 		}
 
+		// Draw some lines for better display
 		this.drawLine(line_length);
 		this.drawLine(line_length);
 		this.drawLine(line_length);
 
+		// Set the header data
 		const header = [{
 			issue_key    : chalk.bold(issue.key),
 			assignee     : chalk.bold(issue_fields.assignee.name),
@@ -103,6 +112,7 @@ class Show {
 			labels       : chalk.bold(issue_fields.labels.join(`, `)),
 		}];
 
+		// Set Summary and Description data
 		const data = [
 			{
 				text : `-`.repeat(line_length)
@@ -127,6 +137,7 @@ class Show {
 			this.drawLine(line_length);
 		}
 
+		// Display custom field data
 		log(columnify(custom_fields, {
 			maxWidth    : line_length,
 			showHeaders : false,
@@ -134,11 +145,13 @@ class Show {
 
 		this.drawLine(line_length);
 
+		// Display header data
 		log(columnify(header, {
 			minWidth       : 20,
 			columnSplitter : ` | `
 		}));
 
+		// Display summary and description data
 		log(columnify(data, {
 			maxWidth    : line_length,
 			showHeaders : false,
@@ -150,7 +163,7 @@ class Show {
 	 * @param  {Integer} length Length of the line
 	 * @return {Void}
 	 */
-	static drawLine(length = line_length) {
+	static drawLine(length = 175) {
 		log(`-`.repeat(length));
 	}
 }
