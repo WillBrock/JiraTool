@@ -14,11 +14,15 @@ class Update {
 	static async run(issue_key, input_field, value, action = `add`) {
 		const fields         = await Jira.fetchData(`/field`);
 		const indexed_fields = {};
-		const verb_data      = {};
-		const data           = {
+		const field_data     = {};
+		let output           = null;
+
+		// Post data to jira
+		const data = {
 			update : {}
 		};
 
+		// Normalize the input field
 		input_field = input_field.toLowerCase();
 
 		// Index the fields by their name field
@@ -28,12 +32,16 @@ class Update {
 		}
 
 		// Format the data
-		const put_data    = this.getPutData(input_field, value);
-		verb_data[action] = put_data;
+		if(action === `add`) {
+			field_data[action] = {
+				name : value
+			};
+		}
+		else {
+			field_data[action] = value;
+		}
 
-		data.update[indexed_fields[input_field].id] = [verb_data];
-
-		console.log(issue_key, JSON.stringify(data), value);
+		data.update[indexed_fields[input_field].id] = [field_data];
 
 		// Push the update to jira
 		await Jira.fetchData(`/issue/${issue_key}`, {
@@ -42,43 +50,6 @@ class Update {
 		});
 
 		console.log(`Field Saved`);
-	}
-
-	/**
-	 * Get formatted data to pass to the jira api
-	 * Jira sometimes needs a nested object with a name property
-	 * @param  {String} input_field  Field to update
-	 * @param  {String} value        Value of the field
-	 * @return {Object}              Formatted data for the PUT request to jira
-	 */
-	static getPutData(input_field, value) {
-		const nested_fields = this.getNestedFields().map((value) => {
-			return value.toLowerCase();
-		});
-
-		let output = {};
-
-		if(nested_fields.includes(input_field)) {
-			output = {
-				name : value
-			};
-		}
-		else {
-			output = value;
-		}
-
-		return output;
-	}
-
-	/**
-	 * Fields that need to be nested for the jira api, not sure if this is a bug or not with jira
-	 * @return {Array} Fields to nest
-	 */
-	static getNestedFields() {
-		return [
-			`Components`,
-			`fixVersions`
-		];
 	}
 }
 

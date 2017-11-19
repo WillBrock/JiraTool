@@ -1,15 +1,13 @@
 # Jira command line tool
 
-Allows viewing, editing, updating and deleting jira content as if it was done on the Jira website.
+This is an experimental command line tool that allows viewing, editing, updating and deleting jira content as if it was done on the Jira website.
 
 ## Features
 
 * View issue data
-* Update/Add/Delete issue data
 * View issues from JQL query
-* Create new issues
-* View issues by user
-* Update/Add versions
+* Update/Add/Delete issue data
+* Transition issues
 
 # Install
 
@@ -26,18 +24,29 @@ npm install -g jira-tool
 `remove`
 `init`
 
+# Todo
+
+* Add autocompletion for available fields and transitions
+* Add create issue
+
 # Quick Start
 
 Display data from an issue
 
 ```
-jira show 12345
+jira s 12345
+```
+
+Or
+
+```
+jira s KEY-12345
 ```
 
 Display issues from a JQL query
 
 ```
-jira jql "fixVersion = 8.6.0 AND component IN (Foo)"
+jira jql "fixVersion = 1.6.0 AND component IN (Foo, Bar, Baz)"
 ```
 
 Add a component
@@ -46,23 +55,47 @@ Add a component
 jira add 12345 component Foo
 ```
 
+Remove a Fix Version
+
+```
+jira remove 12345 "Fix Version" "1.8.0"
+```
+
 Update a custom field
 
 ```
-jira set 12345 "Some Random Field" "FooBar"
+jira set 12345 "Branch Name" "FooBar"
 ```
 
 # Init
 
-# Config
+This prompts the user for the configuration of the jira account
+
+`url` Url for jira
+`username` Jira username
+`password` Jira password
+`issue-key-prefix` Prefix for an issue key. e.g if issue key is FOO-12345 then FOO can be entered so 12345 can be used on the command line
 
 # Show
 
+`jira s 12345`
 
-# Config
+Display data from a single jira issue
 
-Below is an example config file.
+# Jql
 
-All config options are displayed below.
+`jira jql "fixVersion IN (1.3.0, 1.4.0) AND component = Foo"`
 
-Config options
+Query Jira for a specified list of issues
+
+# Add
+
+Add data to a specific field
+
+# Set
+
+Set data for a specific field
+
+# Remove
+
+Remove data from a specific field

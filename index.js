@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 `use strict`;
 
-const program = require(`commander`);
-const prompt  = require(`prompt`);
-const store   = require(`data-store`)(`jira`);
-const Config  = require(`./classes/Config`);
-const Helper  = require(`./classes/Helper`);
-const Show    = require(`./classes/Show`);
-const Jql     = require(`./classes/Jql`);
-const Update  = require(`./classes/Update`);
+const program    = require(`commander`);
+const prompt     = require(`prompt`);
+const store      = require(`data-store`)(`jira`);
+const Config     = require(`./classes/Config`);
+const Helper     = require(`./classes/Helper`);
+const Show       = require(`./classes/Show`);
+const Jql        = require(`./classes/Jql`);
+const Update     = require(`./classes/Update`);
+const Transition = require(`./classes/Transition`);
 
 // Initialize jira
 program
@@ -93,10 +94,17 @@ program
 
 // Transition issue
 program
-	.command(`transition <issue_key>`)
+	.command(`transition <issue_key> <transition>`)
 	.description(`Transition an issue`)
-	.action((issue_key) => {
-		// prompt();
+	.action((issue_key, transition) => {
+		issue_key = Helper.getIssueKey(issue_key);
+
+		try {
+			Transition.run(issue_key, transition);
+		}
+		catch(error) {
+			console.log(error.message);
+		}
 	});
 
 program.parse(process.argv);
