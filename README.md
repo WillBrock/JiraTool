@@ -90,12 +90,18 @@ Query Jira for a specified list of issues
 
 # Add
 
+`jira add 12345 fixVersion "1.6.2"
+
 Add data to a specific field
 
 # Set
 
+`jira set 12345 "Branch Name" "foo-bar"`
+
 Set data for a specific field
 
 # Remove
+
+`jira remove 12345 component FooBar
 
 Remove data from a specific field
