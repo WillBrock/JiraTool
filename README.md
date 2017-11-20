@@ -102,6 +102,6 @@ Set data for a specific field
 
 # Remove
 
-`jira remove 12345 component FooBar
+`jira remove 12345 component FooBar`
 
 Remove data from a specific field
