@@ -1,6 +1,6 @@
 # Jira command line tool
 
-This is an experimental command line tool that allows viewing, editing, updating and deleting jira content as if it was done on the Jira website.
+This is an experimental jira command line tool that allows viewing, editing, updating, transitioning and deleting jira content as if it was done on the Jira website.
 
 ## Features
 
@@ -17,12 +17,13 @@ npm install -g jira-tool
 
 # Available Commands
 
-`s`
-`jql`
-`add`
-`set`
-`remove`
-`init`
+* `s`
+* `jql`
+* `add`
+* `set`
+* `remove`
+* `transition`
+* `init`
 
 # Todo
 
@@ -69,12 +70,14 @@ jira set 12345 "Branch Name" "FooBar"
 
 # Init
 
+`jira init`
+
 This prompts the user for the configuration of the jira account
 
-`url` Url for jira
-`username` Jira username
-`password` Jira password
-`issue-key-prefix` Prefix for an issue key. e.g if issue key is FOO-12345 then FOO can be entered so 12345 can be used on the command line
+* `url` Url for jira
+* `username` Jira username
+* `password` Jira password
+* `issue-key-prefix` Prefix for an issue key. e.g if issue key is FOO-12345 then FOO can be entered so 12345 can be used on the command line
 
 # Show
 
@@ -90,7 +93,7 @@ Query Jira for a specified list of issues
 
 # Add
 
-`jira add 12345 fixVersion "1.6.2"
+`jira add 12345 fixVersion "1.6.2"`
 
 Add data to a specific field
 

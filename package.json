@@ -1,15 +1,17 @@
 {
-  "name": "jira-cli",
+  "name": "jira-tool",
   "version": "1.0.0",
-  "description": "CLI for jira actions",
+  "author" : "Will Brock <wpbrock@gmail.com>",
+  "description": "Command line interface for jira issues",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "jira"
+    "jira",
+    "cli",
+    "command line interface"
   ],
-  "author": "Will Brock",
   "license": "ISC",
   "devDependencies": {
     "btoa": "^1.1.2",
