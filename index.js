@@ -2,7 +2,6 @@
 `use strict`;
 
 const program    = require(`commander`);
-const prompt     = require(`prompt`);
 const store      = require(`data-store`)(`jira`);
 const Config     = require(`./classes/Config`);
 const Helper     = require(`./classes/Helper`);
