@@ -26,10 +26,10 @@
     "js-beautify": "^1.7.4",
     "moment": "^2.19.1",
     "node-fetch": "^1.7.3",
-    "prompt": "^1.0.0"
   },
   "dependencies": {
-    "commander": "^2.11.0"
+    "commander": "^2.11.0",
+    "prompt": "^1.0.0"
   },
   "bin": {
     "jira": "./index.js"
