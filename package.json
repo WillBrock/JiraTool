@@ -1,6 +1,6 @@
 {
   "name": "jira-tool",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Will Brock <wpbrock@gmail.com>",
   "description": "Command line interface for jira issues",
   "main": "index.js",
