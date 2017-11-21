@@ -17,7 +17,9 @@
     "command line interface"
   ],
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "commander": "^2.11.0",
+    "prompt": "^1.0.0",
     "btoa": "^1.1.2",
     "chalk": "^2.3.0",
     "cli-table2": "^0.2.0",
@@ -26,10 +28,6 @@
     "js-beautify": "^1.7.4",
     "moment": "^2.19.1",
     "node-fetch": "^1.7.3"
-  },
-  "dependencies": {
-    "commander": "^2.11.0",
-    "prompt": "^1.0.0"
   },
   "bin": {
     "jira": "./index.js"
