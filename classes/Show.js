@@ -1,7 +1,7 @@
 `use strict`;
 
 const Jira      = require(`../lib/Jira`);
-const Table     = require(`cli-table2`);
+const Table     = require(`cli-table3`);
 const columnify = require('columnify');
 const chalk     = require(`chalk`);
 const moment    = require(`moment`);
